@@ -65,7 +65,12 @@ public class WoodCutter : Peon
         {
             hasTool = false;
         }
-        
+
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 
     void OnTriggerEnter (Collider whatHit)

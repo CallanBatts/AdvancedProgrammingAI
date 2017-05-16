@@ -99,6 +99,11 @@ public class Miner : Peon
         Debug.Log("hasTool? " + hasTool);
         Debug.Log("Tool usage: " + toolUses);
         */
+
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerEnter(Collider whatHit)
