@@ -8,7 +8,7 @@ public class Peon : MonoBehaviour
     protected GameManager gameManager;
     protected GameObject peon;
     protected NavMeshAgent nav;
-    protected int health;
+    public int health;
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +19,11 @@ public class Peon : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
+        
 	}
+
+    void DamagePeon(int damage)
+    {
+        health -= damage;
+    }
 }

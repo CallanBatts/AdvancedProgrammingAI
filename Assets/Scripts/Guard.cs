@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class Guard : Peon
 {
-    private Vector3 rayDirection = Vector3.zero;
-
     bool outsideTown;
     GameObject target;
+    float timer = 0;
+    int damage = 5;
 
     public GameObject[] points;
     int destPoint = 0;
@@ -30,6 +30,8 @@ public class Guard : Peon
 	// Update is called once per frame
 	void Update ()
     {
+        timer += Time.deltaTime;
+
         if (CanSeeEnemy())
         {
             Attack();
@@ -42,7 +44,12 @@ public class Guard : Peon
         {
             Patrol();
         }
-	}
+
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     bool CanSeeEnemy()
     {
@@ -50,13 +57,6 @@ public class Guard : Peon
         {
             return true;
         }
-
-        //Physics.SphereCast(this.gameObject.transform.position, 2f, this.gameObject.transform.forward, out hit);
-        /*if (hit.transform.tag == "Enemy")
-        {
-            return true;
-        }
-        */
         return false;
     }
 
@@ -92,9 +92,10 @@ public class Guard : Peon
         nav.ResetPath();
         nav.SetDestination(enemy.transform.position);
 
-        if (nav.remainingDistance < 0.5f)
+        if (nav.remainingDistance < 0.5f && timer > 2f)
         {
-            //Damage Enemy
+            enemy.SendMessage("DamagePeon", damage);
+            timer = 0;
         }
     }
 
@@ -103,13 +104,6 @@ public class Guard : Peon
         if (other.tag == "Town")
         {
             outsideTown = false;
-        }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Town")
-        {
-            outsideTown = true;
         }
     }
 }
