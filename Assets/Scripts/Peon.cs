@@ -10,8 +10,14 @@ public class Peon : MonoBehaviour
     protected NavMeshAgent nav;
     public int health;
 
-	// Use this for initialization
-	void Start ()
+    protected int currentResource;
+    protected int maxResource;
+    protected int gatherRate;
+    protected bool hasTool;
+    protected int toolUses;
+
+    // Use this for initialization
+    void Start ()
     {
         
 	}
@@ -22,8 +28,13 @@ public class Peon : MonoBehaviour
         
 	}
 
-    void DamagePeon(int damage)
+    protected void DamagePeon(int damage)
     {
         health -= damage;
+    }
+
+    protected void Panic()
+    {
+
     }
 }

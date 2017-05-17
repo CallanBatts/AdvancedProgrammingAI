@@ -5,12 +5,6 @@ using UnityEngine.AI;
 
 public class WoodCutter : Peon
 {
-    int currentResource;
-    int maxResource;
-    int gatherRate;
-    bool hasTool;
-    int toolUses;
-
     float timer = 0f;
 
     private void Awake()
@@ -19,19 +13,13 @@ public class WoodCutter : Peon
         health = 20;
         peon = this.gameObject;
         gameManager = FindObjectOfType<GameManager>();
-    }
-
-    // Use this for initialization
-    void Start ()
-    {
         currentResource = 0;
         maxResource = 10;
         gatherRate = 4;
         hasTool = true;
         toolUses = 20;
-	}
-	
-	// Update is called once per frame
+    }
+
 	void Update ()
     {
         timer += Time.deltaTime;
@@ -54,7 +42,6 @@ public class WoodCutter : Peon
             //GetTool();
             nav.ResetPath();
             nav.SetDestination(gameManager.smithLocation.transform.position);
-            
         }
         else if (false /*&& isBeingAttacked == true */) 
         {
