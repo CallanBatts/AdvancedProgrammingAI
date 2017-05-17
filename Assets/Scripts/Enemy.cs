@@ -16,13 +16,6 @@ public class Enemy : Peon
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
 	void Update ()
     {
         timer += Time.deltaTime;
@@ -42,16 +35,10 @@ public class Enemy : Peon
             nav.SetDestination(gameManager.townCentre.transform.position);
         }
 
-
         if (health <= 0)
         {
             Destroy(this.gameObject);
         }
-    }
-
-    void DamageEnemy()
-    {
-
     }
 
     void AttackPeon(GameObject target)
